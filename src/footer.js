@@ -27,8 +27,9 @@ function updateScroll() {
 
 $(document).ready(function() {
   $("#footer > div").on("mousedown", function() {
-      config.selection = $(this).data('tab');
+    config.selection = $(this).data("tab");
   });
+  updateScroll();
 });
 
 window.addEventListener("scroll", function(e) {

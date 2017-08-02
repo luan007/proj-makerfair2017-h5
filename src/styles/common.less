@@ -1,5 +1,4 @@
 @import "./shared.less";
-
 html,
 body {
     margin: 0;
@@ -9,4 +8,46 @@ body {
 
 body {
     background: @color-bg;
+}
+
+.main {
+    min-height: 100%;
+    .tab {
+        min-height: 100%;
+        display: none;
+    }
+    .tab.visible {
+        display: block;
+    }
+}
+
+.secondary-tab {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    right: 0; // height: 1rem;
+    font-size: 1.2rem;
+    overflow: scroll;
+    color: white;
+    .holder {
+        display: flex;
+        flex-grow: 1;
+        padding: 0 5rem;
+        justify-content: flex-start;
+        div {
+            flex-grow: 1;
+            padding: 2rem;
+            opacity: 0.8;
+            // border: 1px solid red;
+            white-space: nowrap; // border: 1px solid red;
+            transform: scale(1);
+            transition: 0.3s all ease;
+            text-align: center;
+            &.selected {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+        }
+    }
 }

@@ -4,6 +4,11 @@
     <title>BJ_MF</title>
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
     <link rel="stylesheet" href="vendor/swiper.min.css">
+
+    <script src='node_modules/jquery/dist/jquery.min.js'></script>
+    <script src='node_modules/vue/dist/vue.min.js'></script>
+    <script src='vendor/swiper.min.js'></script>
+    
 </head>
 
 <body>
@@ -17,16 +22,33 @@
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo saepe ut, sunt similique dolorem impedit perferendis tempora ullam deserunt alias natus iusto voluptatum laudantium labore praesentium autem porro, aliquam doloribus?</div>
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo saepe ut, sunt similique dolorem impedit perferendis tempora ullam deserunt alias natus iusto voluptatum laudantium labore praesentium autem porro, aliquam doloribus?</div>
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo saepe ut, sunt similique dolorem impedit perferendis tempora ullam deserunt alias natus iusto voluptatum laudantium labore praesentium autem porro, aliquam doloribus?</div> -->
+
+        <div class='main'>
+            <div class='tab visible schedule'>
+                <div class='secondary-tab'>
+                    <div class='holder'>
+                        <div data-tab='0' :class='{ selected: ui.schedule.selection == 0 }'>论坛</div>
+                        <div data-tab='1' :class='{ selected: ui.schedule.selection == 1 }'>舞台</div>
+                    </div>
+                </div>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">Slide 1</div>
+                        <div class="swiper-slide">Slide 2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="footer" v-bind:class="{ footer: true, hide: !ui.footer.visible }">
             <div data-tab='0' v-bind:class='{ selected: ui.footer.selection == 0 }'></div>
             <div data-tab='1' v-bind:class='{ selected: ui.footer.selection == 1 }'></div>
             <div data-tab='2' v-bind:class='{ selected: ui.footer.selection == 2 }'></div>
         </div>
+
     </div>
-    <script src='node_modules/jquery/dist/jquery.min.js'></script>
-    <script src='node_modules/vue/dist/vue.min.js'></script>
-    <script src='vendor/swiper.min.js'></script>
     <script src='dist/main.js'></script>
+    
 </body>
 
 </html>
