@@ -10,18 +10,6 @@ import * as detail from "./detail.js";
 import * as import_data from "./data.js";
 var flag = false;
 
-window.addEventListener("popstate", function(p) {
-  var hash = window.location.hash;
-  if (hash) {
-    try {
-      var js = JSON.parse(atob(hash.substr(1)));
-      flag = true;
-      data.ui = js;
-      common.events.emit('rebind', data.ui);
-    } catch (e) {}
-  }
-});
-
 var data = {
   ui: {
     game: game.config,
@@ -33,18 +21,32 @@ var data = {
   data: import_data.data
 };
 
+window.addEventListener("popstate", function(p) {
+  var hash = window.location.hash;
+  if (hash) {
+    try {
+      var js = JSON.parse(atob(hash.substr(1)));
+      flag = true;
+      console.log(js.footer.selection);
+      data.ui = js;
+      common.events.emit("rebind", data.ui);
+    } catch (e) {}
+  }
+});
+
+window.s = function(q) {
+  data.ui.detail.data = q;
+};
 
 common.status.data = data;
 
 function pushState() {
   history.pushState({}, null, "#" + btoa(JSON.stringify(data.ui)));
 }
-pushState();
 
 common.watch.ui = {
   deep: true,
   handler: function(val, old) {
-    // console.log(val);
     if (flag) return;
     flag = false;
     pushState();
@@ -68,3 +70,15 @@ function update() {
 }
 
 update();
+
+$(window).ready(function() {
+  var hash = window.location.hash;
+  if (hash) {
+    var js = JSON.parse(atob(hash.substr(1)));
+    console.log(js);
+    data.ui = js;
+    common.events.emit("rebind", data.ui);
+  } else {
+    pushState();
+  }
+});

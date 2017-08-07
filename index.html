@@ -15,7 +15,7 @@
 
 <body>
     <div style='color: white' id="app">
-        <div class='main'>
+        <div :class='{ main: true, hide: !!ui.detail.data }'>
             <div style='position: absolute; height: 100%; width: 100%;'>
                 <canvas class='full'></canvas>
             </div>
@@ -887,8 +887,8 @@
             <div :class='{ tab: true, schedule: true, visible: ui.footer.selection == 1}'>
                 <div class='secondary-tab'>
                     <div class='holder'>
-                        <div v-on:click="scheduleSelect" data-tab='0' :class='{ selected: ui.schedule.selection == 0 }'>论坛</div>
-                        <div v-on:click="scheduleSelect" data-tab='1' :class='{ selected: ui.schedule.selection == 1 }'>舞台</div>
+                        <div data-tab='0' :class='{ selected: ui.schedule.selection == 0 }'>论坛</div>
+                        <div data-tab='1' :class='{ selected: ui.schedule.selection == 1 }'>舞台</div>
                     </div>
                 </div>
                 <div class="swiper-container">
@@ -1014,13 +1014,18 @@
                     </div>
                 </div>
             </div>
+
+            <div id="footer" v-bind:class="{ footer: true, hide: !ui.footer.visible }">
+                <div v-on:click="footerSelection" data-tab='0' v-bind:class='{ selected: ui.footer.selection == 0 }'></div>
+                <div v-on:click="footerSelection" data-tab='1' v-bind:class='{ selected: ui.footer.selection == 1 }'></div>
+                <div v-on:click="footerSelection" data-tab='2' v-bind:class='{ selected: ui.footer.selection == 2 }'></div>
+            </div>
         </div>
 
-        <div id="footer" v-bind:class="{ footer: true, hide: !ui.footer.visible }">
-            <div v-on:click="footerSelection" data-tab='0' v-bind:class='{ selected: ui.footer.selection == 0 }'></div>
-            <div v-on:click="footerSelection" data-tab='1' v-bind:class='{ selected: ui.footer.selection == 1 }'></div>
-            <div v-on:click="footerSelection" data-tab='2' v-bind:class='{ selected: ui.footer.selection == 2 }'></div>
+        <div :class='{ detail: true, show: !!ui.detail.data }'>
+
         </div>
+
 
         <div class='debug' style='pointer-events: none'>
             <!-- <canvas class='full'></canvas> -->
