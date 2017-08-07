@@ -8,6 +8,7 @@
     <!-- <meta name="full-screen" content="yes"> -->
     <script src='node_modules/jquery/dist/jquery.min.js'></script>
     <script src='node_modules/vue/dist/vue.min.js'></script>
+    <script src='vendor/js.cookie.js'></script>
     <script src='vendor/swiper.min.js'></script>
 
 </head>
@@ -971,19 +972,43 @@
                             <div class='scrollContainer'>
                                 <div class='map3d'>
                                     <!-- a -->
-                                    <div class='pin'></div>
-                                    <div class='pin'></div>
+                                    <div class='pin active'>
+                                        <div class='pop'></div>
+                                        <div class='p'>intel Curie<br>互动展位</div>
+                                    </div>
+                                    <div class='pin active'>
+                                        <div class='pop'></div>
+                                        <div class='p'>intel Curie<br>互动展位</div>
+                                    </div>
                                     <!-- b -->
-                                    <div class='pin'></div>
-                                    <div class='pin'></div>
+                                    <div class='pin near'>
+                                        <div class='pop'></div>
+                                        <div class='p'>intel Curie<br>互动展位</div>
+                                    </div>
+                                    <div class='pin'>
+                                        <div class='pop'></div>
+                                        <div class='p'>intel Curie<br>互动展位</div>
+                                    </div>
                                     <!-- c -->
-                                    <div class='pin'></div>
+                                    <div class='pin'>
+                                        <div class='pop'></div>
+                                    </div>
                                     <!-- d -->
-                                    <div class='pin'></div>
-                                    <div class='pin'></div>
-                                    <div class='pin'></div>
-                                    <div class='pin'></div>
-                                    <div class='pin'></div>
+                                    <div class='pin'>
+                                        <div class='pop'></div>
+                                    </div>
+                                    <div class='pin'>
+                                        <div class='pop'></div>
+                                    </div>
+                                    <div class='pin'>
+                                        <div class='pop'></div>
+                                    </div>
+                                    <div class='pin'>
+                                        <div class='pop'></div>
+                                    </div>
+                                    <div class='pin'>
+                                        <div class='pop'></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -993,9 +1018,9 @@
         </div>
 
         <div id="footer" v-bind:class="{ footer: true, hide: !ui.footer.visible }">
-            <div data-tab='0' v-bind:class='{ selected: ui.footer.selection == 0 }'></div>
-            <div data-tab='1' v-bind:class='{ selected: ui.footer.selection == 1 }'></div>
-            <div data-tab='2' v-bind:class='{ selected: ui.footer.selection == 2 }'></div>
+            <div v-on:click="footerSelection" data-tab='0' v-bind:class='{ selected: ui.footer.selection == 0 }'></div>
+            <div v-on:click="footerSelection" data-tab='1' v-bind:class='{ selected: ui.footer.selection == 1 }'></div>
+            <div v-on:click="footerSelection" data-tab='2' v-bind:class='{ selected: ui.footer.selection == 2 }'></div>
         </div>
 
         <div class='debug' style='pointer-events: none'>

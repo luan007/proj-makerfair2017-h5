@@ -32,6 +32,7 @@
   },
   "homepage": "https://github.com/luan007/BJ_MF2017#readme",
   "dependencies": {
-    "color": "^2.0.0"
+    "color": "^2.0.0",
+    "eventhandler": "^2.1.0"
   }
 }

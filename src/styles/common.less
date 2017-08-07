@@ -1,17 +1,11 @@
 @import "./shared.less";
-
-
 @font-face {
-	font-family: 'DNumber';
-	src: url('/assets/fonts/DINNextSlabPro-Black.eot');
-	src: url('/assets/fonts/DINNextSlabPro-Black.eot?#iefix') format('embedded-opentype'),
-		url('/assets/fonts/DINNextSlabPro-Black.woff') format('woff'),
-		url('/assets/fonts/DINNextSlabPro-Black.ttf') format('truetype');
-	font-weight: 900;
-	font-style: normal;
+    font-family: 'DNumber';
+    src: url('/assets/fonts/DINNextSlabPro-Black.eot');
+    src: url('/assets/fonts/DINNextSlabPro-Black.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/DINNextSlabPro-Black.woff') format('woff'), url('/assets/fonts/DINNextSlabPro-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
 }
-
-
 
 html,
 body {
@@ -26,13 +20,12 @@ body {
 
 .main {
     min-height: 100%;
-    
     .tab {
         position: absolute;
-        top:0;
-        left:0;
-        bottom:0;
-        right:0;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
         transform: scale(0.8);
         pointer-events: none;
         min-height: 100%;
@@ -62,7 +55,7 @@ body {
         display: flex;
         flex-grow: 1;
         padding: 0 2rem;
-        background: linear-gradient(to bottom, #0a0f3e 30%,rgba(10, 15, 62, 0) 100%);
+        background: linear-gradient(to bottom, #0a0f3e 30%, rgba(10, 15, 62, 0) 100%);
         justify-content: flex-start;
         div {
             flex-grow: 1;
@@ -91,8 +84,7 @@ body {
 }
 
 .speaker {
-    position: relative;
-    // min-height: 4rem;
+    position: relative; // min-height: 4rem;
     .avatar {
         height: 2.5rem;
         width: 2.5rem;
@@ -104,19 +96,17 @@ body {
         border-radius: 99999em;
         background: white;
         background-image: url(/assets/GHS.gif);
-        background-size: cover; 
+        background-size: cover;
         border: 2px solid @color-b;
     }
-
     .vcenter {
         margin-left: 5rem;
         padding: 0.5rem 0rem;
     }
-
-    .name, .intro {
+    .name,
+    .intro {
         // padding-left: 5rem;
     }
-
     .name {
         font-size: 1rem;
     }
@@ -125,7 +115,6 @@ body {
         opacity: 0.6;
     }
 }
-
 
 .debug {
     position: absolute;
@@ -144,4 +133,8 @@ canvas.full {
     bottom: 0;
     height: 100%;
     width: 100%;
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }

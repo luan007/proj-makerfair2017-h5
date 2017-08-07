@@ -1,4 +1,9 @@
 import "./styles/footer.less";
+import * as common from "./common.js";
+
+common.methods.footerSelection = function(e) {
+  config.selection = $(e.target).data("tab");
+};
 
 export var config = {
   autoHide: true,
@@ -6,6 +11,12 @@ export var config = {
   threshold: 2,
   selection: 0
 };
+
+
+common.events.on('rebind', function(ui) {
+  config = ui.footer
+});
+
 
 var prevY = 0;
 
@@ -26,9 +37,6 @@ function updateScroll() {
 }
 
 $(document).ready(function() {
-  $("#footer > div").on("mousedown", function() {
-    config.selection = $(this).data("tab");
-  });
   updateScroll();
 });
 

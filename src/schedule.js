@@ -23,3 +23,7 @@ $(document).ready(function() {
     config.selection = $(this).data("tab");
   });
 });
+
+common.events.on('rebind', function(ui) {
+  config = ui.schedule
+});
