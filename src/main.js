@@ -6,6 +6,7 @@ import * as game from "./game.js";
 import * as map from "./map.js";
 import * as vfx from "./vfx.js";
 import * as user from "./user.js";
+import * as detail from "./detail.js";
 import * as import_data from "./data.js";
 var flag = false;
 
@@ -25,7 +26,8 @@ var data = {
   ui: {
     game: game.config,
     footer: footer.config,
-    schedule: schedule.config
+    schedule: schedule.config,
+    detail: detail.config
   },
   user: user.config,
   data: import_data.data

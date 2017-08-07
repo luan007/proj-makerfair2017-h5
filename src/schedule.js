@@ -8,22 +8,20 @@ var swiper;
 window.addEventListener("load", function() {
   swiper = new Swiper(".schedule .swiper-container", {
     onSlideChangeStart: function() {
-      config.selection = (swiper.realIndex); //double binding
+      config.selection = swiper.realIndex; //double binding
     }
   });
 });
+
+common.methods.scheduleSelect = function(e) {
+  config.selection = $(e.target).data("tab");
+};
 
 common.watch["ui.schedule.selection"] = function() {
   //reaction
   swiper.slideTo(config.selection);
 };
 
-$(document).ready(function() {
-  $(".schedule .holder > div").on("mousedown", function() {
-    config.selection = $(this).data("tab");
-  });
-});
-
-common.events.on('rebind', function(ui) {
-  config = ui.schedule
+common.events.on("rebind", function(ui) {
+  config = ui.schedule;
 });

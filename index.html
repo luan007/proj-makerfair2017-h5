@@ -887,8 +887,8 @@
             <div :class='{ tab: true, schedule: true, visible: ui.footer.selection == 1}'>
                 <div class='secondary-tab'>
                     <div class='holder'>
-                        <div data-tab='0' :class='{ selected: ui.schedule.selection == 0 }'>论坛</div>
-                        <div data-tab='1' :class='{ selected: ui.schedule.selection == 1 }'>舞台</div>
+                        <div v-on:click="scheduleSelect" data-tab='0' :class='{ selected: ui.schedule.selection == 0 }'>论坛</div>
+                        <div v-on:click="scheduleSelect" data-tab='1' :class='{ selected: ui.schedule.selection == 1 }'>舞台</div>
                     </div>
                 </div>
                 <div class="swiper-container">
@@ -927,7 +927,6 @@
                     </div>
                 </div>
             </div>
-
             <div :class='{ tab: true, game: true, visible: ui.footer.selection == 2}'>
                 <!-- <h1 style='font-family: DNumber; font-size: 5rem;'>35</h1> -->
                 <div class='secondary-tab'>
