@@ -1,4 +1,18 @@
 @import "./shared.less";
+
+
+@font-face {
+	font-family: 'DNumber';
+	src: url('/assets/fonts/DINNextSlabPro-Black.eot');
+	src: url('/assets/fonts/DINNextSlabPro-Black.eot?#iefix') format('embedded-opentype'),
+		url('/assets/fonts/DINNextSlabPro-Black.woff') format('woff'),
+		url('/assets/fonts/DINNextSlabPro-Black.ttf') format('truetype');
+	font-weight: 900;
+	font-style: normal;
+}
+
+
+
 html,
 body {
     margin: 0;
@@ -12,12 +26,24 @@ body {
 
 .main {
     min-height: 100%;
+    
     .tab {
+        position: absolute;
+        top:0;
+        left:0;
+        bottom:0;
+        right:0;
+        transform: scale(0.8);
+        pointer-events: none;
         min-height: 100%;
-        display: none;
+        display: block;
+        opacity: 0;
     }
     .tab.visible {
-        display: block;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        transform: scale(1);
+        pointer-events: all;
+        opacity: 1;
     }
 }
 
@@ -27,19 +53,21 @@ body {
     left: 0;
     z-index: 99999;
     right: 0; // height: 1rem;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    font-weight: 800;
     overflow: scroll;
+    overflow-y: hidden;
     color: white;
     .holder {
         display: flex;
         flex-grow: 1;
-        padding: 0 5rem;
+        padding: 0 2rem;
+        background: linear-gradient(to bottom, #0a0f3e 30%,rgba(10, 15, 62, 0) 100%);
         justify-content: flex-start;
         div {
             flex-grow: 1;
-            padding: 2rem;
-            opacity: 0.8;
-            // border: 1px solid red;
+            padding: 1.3rem;
+            opacity: 0.8; // border: 1px solid red;
             white-space: nowrap; // border: 1px solid red;
             transform: scale(1);
             transition: 0.3s all ease;
@@ -50,4 +78,70 @@ body {
             }
         }
     }
+}
+
+.swiper-slide {
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.scrollContainer {
+    padding: 4.7rem 0rem 5rem 0rem;
+}
+
+.speaker {
+    position: relative;
+    // min-height: 4rem;
+    .avatar {
+        height: 2.5rem;
+        width: 2.5rem;
+        position: absolute;
+        top: 50%;
+        left: 1rem;
+        transition: border-color 0.5s ease;
+        transform: translate(0, -50%);
+        border-radius: 99999em;
+        background: white;
+        background-image: url(/assets/GHS.gif);
+        background-size: cover; 
+        border: 2px solid @color-b;
+    }
+
+    .vcenter {
+        margin-left: 5rem;
+        padding: 0.5rem 0rem;
+    }
+
+    .name, .intro {
+        // padding-left: 5rem;
+    }
+
+    .name {
+        font-size: 1rem;
+    }
+    .intro {
+        font-size: 0.8rem;
+        opacity: 0.6;
+    }
+}
+
+
+.debug {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+}
+
+canvas.full {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
 }

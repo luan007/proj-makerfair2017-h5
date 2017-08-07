@@ -30,5 +30,8 @@
     "webpack": "^2.2.0",
     "zepto": "^1.2.0"
   },
-  "homepage": "https://github.com/luan007/BJ_MF2017#readme"
+  "homepage": "https://github.com/luan007/BJ_MF2017#readme",
+  "dependencies": {
+    "color": "^2.0.0"
+  }
 }
