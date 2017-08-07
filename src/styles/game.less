@@ -58,6 +58,7 @@
     &:hover,
     &.active {
         .pop {
+            color: white;
             background-image: linear-gradient(to right bottom, #33aa77 0%, #33aa77 20%, #00DFE9 50%, #007CBF 100%);
         }
     }
@@ -97,6 +98,10 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
+                color: @color-b;
+                text-align: center;
+                line-height: 2.8rem;
+                font-weight: 800;
                 border-radius: 30000em;
                 display: block;
                 content: " ";
@@ -111,6 +116,7 @@
                 opacity: 1;
             }
             .pop {
+                color: white;
                 z-index: 9999;
                 background-position: 100% 100%;
                 transform: scale(1.7) translate(0, -2.2rem);

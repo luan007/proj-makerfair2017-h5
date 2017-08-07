@@ -898,7 +898,7 @@
                             <div class='scrollContainer'>
                                 <template v-for='d, j in data.day_forum'>
                                     <div class='date'><span>{{j}}</span></div>
-                                    <div v-on:click='showDetail(x)' v-for='x, y in d' class='sch'>
+                                    <div v-for='x, y in d' class='sch'>
                                         <div><b>{{x.tag}}</b> {{x.from_str + " - " + x.to_str}}</div>
                                         <div>当前</div>
                                         <div>&nbsp;&nbsp;&nbsp;{{x.title}}</div>
@@ -975,30 +975,34 @@
                         <div class="swiper-slide">
                             <div class='scrollContainer'>
                                 <div class='map3d'>
-                                    <!-- a -->
-                                    <div class='pin active'>
+                                    <div v-on:click='showDetail(queryPos(d.key))' v-for="d in data.keys" class='pin'>
+                                        <div class='pop'>{{d.key.replace('-', '')}}</div>
+                                        <div class='p' style='white-space:pre'>{{d.desc}}</div>
+                                    </div>
+                                    <!-- bk -->
+                                    <!-- <div class='pin'>
                                         <div class='pop'></div>
                                         <div class='p'>intel Curie<br>互动展位</div>
                                     </div>
-                                    <div class='pin active'>
+                                    <div class='pin'>
                                         <div class='pop'></div>
                                         <div class='p'>intel Curie<br>互动展位</div>
-                                    </div>
+                                    </div> -->
                                     <!-- b -->
-                                    <div class='pin near'>
+                                    <!-- <div class='pin'>
                                         <div class='pop'></div>
                                         <div class='p'>intel Curie<br>互动展位</div>
                                     </div>
                                     <div class='pin'>
                                         <div class='pop'></div>
                                         <div class='p'>intel Curie<br>互动展位</div>
-                                    </div>
+                                    </div> -->
                                     <!-- c -->
-                                    <div class='pin'>
+                                    <!-- <div class='pin'>
                                         <div class='pop'></div>
-                                    </div>
+                                    </div> -->
                                     <!-- d -->
-                                    <div class='pin'>
+                                    <!-- <div class='pin'>
                                         <div class='pop'></div>
                                     </div>
                                     <div class='pin'>
@@ -1012,7 +1016,7 @@
                                     </div>
                                     <div class='pin'>
                                         <div class='pop'></div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -1028,7 +1032,22 @@
         </div>
 
         <div :class='{ detail: true, show: !!ui.detail.data }'>
-
+            <div style='background-image:url(assets/dummy.jpg)' class='bg'>
+                <div class='like'>
+                    <div></div>
+                    <div>193</div>
+                </div>
+                <div class='bottom'>
+                    <div class='title'>{{ui.detail.data.name}}</div>
+                    <div class='position'>{{ui.detail.data.key}}</div>
+                </div>
+            </div>
+            <p>
+                {{ui.detail.data.intro}}
+            </p>
+            <div class='collect ed'>
+                <img src="assets/ico2.png"/><span>已完成收集</span>
+            </div>
         </div>
 
 

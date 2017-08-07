@@ -31,7 +31,7 @@ data.day_stage = days(data.stage);
 data.day_forum = days(data.forum);
 
 function getTimeStr(d) {
-  return d.getHours() + ":" + (d.getMinutes());
+  return d.getHours() + ":" + d.getMinutes();
 }
 
 function getDateStr(d) {
@@ -53,3 +53,12 @@ function days(arr) {
   return d;
 }
 
+window.queryPos = function(d) {
+  for (var i in data.spots) {
+    if (i == d || i.split(",").indexOf(d) >= 0) {
+      return data.spots[i];
+    }
+  }
+  console.log(d, "not found");
+  return undefined;
+};

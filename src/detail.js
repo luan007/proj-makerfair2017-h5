@@ -2,7 +2,7 @@ import "./styles/detail.less";
 import * as common from "./common.js";
 
 export var config = {
-    data: undefined
+    data: false
 };
 
 common.events.on('rebind', function(ui) {
@@ -11,5 +11,4 @@ common.events.on('rebind', function(ui) {
 
 common.methods.showDetail = function(e) {
   config.data = e;
-  // console.log(config);
 }
