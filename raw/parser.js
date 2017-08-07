@@ -1,4 +1,4 @@
-var fs = require('fs');
+var fs = require("fs");
 var parseXlsx = require("excel");
 
 parseXlsx("spots.xlsx", function(err, data) {
@@ -32,8 +32,32 @@ parseXlsx("spots.xlsx", function(err, data) {
   }
   add(prev, key);
 
-  fs.writeFileSync('spots.json', JSON.stringify({
+  fs.writeFileSync(
+    "spots.json",
+    JSON.stringify({
       spots: spots,
       spots_arr: spots_arr
-  }), "utf-8");
+    }),
+    "utf-8"
+  );
+});
+
+parseXlsx("keys.xlsx", function(err, data) {
+  var spots = {};
+  for (var i = 0; i < data.length; i++) {
+    var obj = {
+      key: data[i][0],
+      desc: data[i][1],
+      rule: data[i][2]
+    };
+    spots[obj.key] = obj;
+  }
+  console.log(spots);
+  fs.writeFileSync(
+    "keys.json",
+    JSON.stringify({
+      keys: spots
+    }),
+    "utf-8"
+  );
 });
