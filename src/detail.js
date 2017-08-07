@@ -8,3 +8,8 @@ export var config = {
 common.events.on('rebind', function(ui) {
   config = ui.detail
 });
+
+common.methods.showDetail = function(e) {
+  config.data = e;
+  // console.log(config);
+}

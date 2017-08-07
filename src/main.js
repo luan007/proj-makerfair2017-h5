@@ -23,12 +23,15 @@ var data = {
 
 window.addEventListener("popstate", function(p) {
   var hash = window.location.hash;
+  // console.log(hash);
   if (hash) {
     try {
-      var js = JSON.parse(atob(hash.substr(1)));
+      var js = JSON.parse(decodeURIComponent(atob(hash.substr(1))));
       flag = true;
-      console.log(js.footer.selection);
       data.ui = js;
+      setTimeout(function(){
+        flag = false;
+      }, 1); //dirty crap, but works :(
       common.events.emit("rebind", data.ui);
     } catch (e) {}
   }
@@ -41,7 +44,11 @@ window.s = function(q) {
 common.status.data = data;
 
 function pushState() {
-  history.pushState({}, null, "#" + btoa(JSON.stringify(data.ui)));
+  history.pushState(
+    {},
+    null,
+    "#" + btoa(encodeURIComponent(JSON.stringify(data.ui)))
+  );
 }
 
 common.watch.ui = {
@@ -74,8 +81,9 @@ update();
 $(window).ready(function() {
   var hash = window.location.hash;
   if (hash) {
-    var js = JSON.parse(atob(hash.substr(1)));
-    console.log(js);
+    var js = JSON.parse(decodeURIComponent(atob(hash.substr(1))));
+    // console.log(js);
+    pushState();
     data.ui = js;
     common.events.emit("rebind", data.ui);
   } else {

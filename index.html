@@ -896,32 +896,37 @@
                         <div class="swiper-slide">
                             <!--论坛-->
                             <div class='scrollContainer'>
-                                <div class='date now'><span>8月11日</span></div>
-                                <div class='sch now'>
-                                    <div><b>新连接</b> 9:30 - 10:30</div>
-                                    <div>当前</div>
-                                    <div>&nbsp;&nbsp;&nbsp;当我们在谈论Maker Faire Beijing时，我们在谈论什么</div>
-                                    <div class='speakers'>
-                                        <div class='speaker'>
-                                            <div class='avatar'></div>
-                                            <div class='vcenter'>
-                                                <div class='name'>杨奥壹</div>
-                                                <div class='intro'>Maker Faire Beijing总负责人，歌华设计项目总监</div>
+                                <template v-for='d, j in data.day_forum'>
+                                    <div class='date'><span>{{j}}</span></div>
+                                    <div v-on:click='showDetail(x)' v-for='x, y in d' class='sch'>
+                                        <div><b>{{x.tag}}</b> {{x.from_str + " - " + x.to_str}}</div>
+                                        <div>当前</div>
+                                        <div>&nbsp;&nbsp;&nbsp;{{x.title}}</div>
+                                        <div class='speakers'>
+                                            <div class='speaker'>
+                                                <div class='avatar'></div>
+                                                <div class='vcenter'>
+                                                    <div class='name'>{{x.name}}</div>
+                                                    <div class='intro'>{{x.job}}</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </template>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <!--舞台-->
                             <div class='scrollContainer'>
-                                <div class='date now'><span>8月11日</span></div>
-                                <div class='sch now'>
-                                    <div>9:30 - 10:30</div>
-                                    <div>正在进行中</div>
-                                    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis, debitis molestiae</div>
-                                </div>
+                                <template v-for='d, j in data.day_stage'>
+                                    <div class='date'><span>{{j}}</span></div>
+                                    <div v-for='x, y in d' class='sch'>
+                                        <div>{{x.from_str + " - " + x.to_str}}</div>
+                                        <div>正在进行中</div>
+                                        <div>{{x.title}}</div>
+                                        <div style='font-size:0.8em'>{{x.desc}}</div>
+                                    </div>
+                                </template>
                             </div>
                         </div>
                     </div>

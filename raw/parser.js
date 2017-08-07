@@ -86,7 +86,7 @@ parseXlsx("forum.xlsx", function(err, data) {
       to: dt2
     });
   }
-  fs.writeFileSync("forum.json", JSON.stringify(all), "utf-8");
+  fs.writeFileSync("forum.json", JSON.stringify({ d: all }), "utf-8");
 });
 
 parseXlsx("stage.xlsx", function(err, data) {
@@ -116,7 +116,7 @@ parseXlsx("stage.xlsx", function(err, data) {
     });
   }
   all.sort((a, b) => {
-      return a.from > b.from;
+    return a.from > b.from;
   });
-  fs.writeFileSync("stage.json", JSON.stringify(all), "utf-8");
+  fs.writeFileSync("stage.json", JSON.stringify({ d: all }), "utf-8");
 });
