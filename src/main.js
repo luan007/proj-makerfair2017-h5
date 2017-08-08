@@ -18,8 +18,10 @@ var data = {
     schedule: schedule.config,
     detail: detail.config
   },
+  dmesg: common.debug,
   user: user.config,
-  data: import_data.data
+  data: import_data.data,
+  wechat: common.wechat
 };
 
 window.addEventListener("popstate", function(p) {

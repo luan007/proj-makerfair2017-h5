@@ -8,8 +8,34 @@ export var data = {
   spots: spots.spots,
   spots_arr: spots.spots_arr,
   stage: stage.d,
-  forum: forum.d
+  forum: forum.d,
+  ble: {
+    "10102:59409": "A-39",
+    "10102:59402": "A-38",
+    "10102:59400": "B-18",
+    "10102:59403": "B-13",
+    "10102:59406": "C-19",
+    "10102:59407": "D-02",
+    "10102:59405": "D-03",
+    "10102:59404": "D-13",
+    "10102:59408": "D-11",
+    "10102:59401": "D-12"
+  }, 
+  code: {
+    "A-39:AwYNAw0MA": "A-39",
+    "A-38:AwEPCwsGD": "A-38",
+    "B-18:qwkMCAsBA": "B-18",
+    "B-13:fAUOCQQJD": "B-13",
+    "C-19:iwMLCAIHD": "C-19",
+    "D-02:rgMBAQMGD": "D-02",
+    "D-03:CgsBCgcBB": "D-03",
+    "D-13:BwUKBg0PD": "D-13",
+    "D-11:CQAHDAULC": "D-11",
+    "D-12:3g4MBwwOA": "D-12"
+  }
 };
+
+// console.log(Object.keys(data.keys));
 
 for (var f in data) {
   for (var j in data[f]) {
@@ -31,7 +57,9 @@ data.day_stage = days(data.stage);
 data.day_forum = days(data.forum);
 
 function getTimeStr(d) {
-  return ('0' + d.getHours()).slice(-2) + ":" + ('0' + d.getMinutes()).slice(-2);
+  return (
+    ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2)
+  );
 }
 
 function getDateStr(d) {

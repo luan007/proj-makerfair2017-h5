@@ -21,7 +21,7 @@
                 <canvas class='full'></canvas>
             </div>
             <div :class='{ tab: true, map: true, visible: ui.footer.selection == 0}'>
-                <svg>
+                <!-- <svg>
                     <g>
                         <g xmlns="http://www.w3.org/2000/svg" id="g4" fill="none" transform="matrix(1.7656463,0,0,1.7656463,324.90716,255.00942)">
                             <g class='d1'>
@@ -883,7 +883,7 @@
                                 </g>
                             </g>
                         </g>
-                </svg>
+                </svg> -->
             </div>
             <div :class='{ tab: true, schedule: true, visible: ui.footer.selection == 1}'>
                 <div class='secondary-tab'>
@@ -1055,9 +1055,10 @@
                 <img src="assets/ico2.png"/><span>完成游戏<br>收集零件</span>
             </div>
         </div>
-        
+
         <div class='debug' style='pointer-events: none'>
             <!-- <canvas class='full'></canvas> -->
+            <p class='logger'>{{dmesg.msg}}</p>
         </div>
 
     </div>

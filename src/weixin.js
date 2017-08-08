@@ -1,6 +1,10 @@
-
+import * as common from "./common.js";
+import * as dtq from "./data.js";
+var dbg = common.debug;
 // alert('in');
 var LOCAL = "debug.com";
+
+dbg.msg = "Hello Weixin";
 //var LOCAL = "circuitpot.com"
 
 $.post(
@@ -9,7 +13,7 @@ $.post(
     url: window.location.href
   },
   function(data) {
-    // alert(data);
+    dbg.msg = data;
     // window.data.statusMessage = "微信服务验证中..";
     var cfg = {
       debug: false,
@@ -74,6 +78,7 @@ $.post(
       function tryOpen() {
         wx.startSearchBeacons({
           complete: function(dt) {
+            common.debug.msg = "Weixin is Up";
             // log("wx.complete");
             // log(JSON.stringify(dt));
 
@@ -103,19 +108,32 @@ $.post(
       wx.onSearchBeacons({
         complete: function(dt) {
           // log("beacon event..");
+          
           var beacons = dt.beacons;
-          var q = {};
+          var q = [];
           for (var i = 0; i < beacons.length; i++) {
             if (beacons[i].rssi + "" == "0") {
               continue;
             }
             var mr = beacons[i].major + ":" + beacons[i].minor;
-            q[mr] = {
+            if(!dtq.data.ble[mr]) continue;
+            q.push({
+              key: mr,
               rssi: parseInt(beacons[i].rssi),
               proximity: beacons[i].proximity
-            };
+            });
           }
-          console.log(q);
+          q.sort(function(a,b) {
+            return -a.rssi + b.rssi;
+          });
+          var kv = {};
+          for(var i = 0; i < q.length; i++) {
+            kv[q[i].key] = q[i];
+          }
+          common.wechat.ble = kv;
+          common.wechat.bleSignal = q;
+          common.wechat.near = q.length > 0 ? q[0] : null;
+          dbg.msg = common.wechat.near;
           // updateRssiList(q);
           // jlog("loc", dt);
           // if (window.location.hash.indexOf("raw") >= 0) {
