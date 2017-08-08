@@ -1,7 +1,7 @@
 var express = require("express");
 var cors = require("cors");
 var fs = require("fs");
-var bodyparaser = require("body-parser");
+var bodyParser = require("body-parser");
 
 var db = {
   user_votes: {},
@@ -10,29 +10,70 @@ var db = {
 
 var app = express();
 app.use(cors());
+app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
   console.log("GET /");
   res.send("OK").end();
 });
 
-app.get("/votes", (req, res) => {
-  console.log("GET /votes");
-  res.status(200).json(db.items).end();
+app.post("/view", (req, res) => {
+  console.log("GET /view");
+  var body = req.body;
+  if (!body || !body.uuid) {
+    return res.status(500).end();
+  }
+  if (!db.user_votes[req.body.uuid]) {
+    db.user_votes[req.body.uuid] = db.user_votes[req.body.uuid] || {};
+    save();
+  }
+  res
+    .status(200)
+    .json({
+      my: db.user_votes[req.body.uuid],
+      all: db.items
+    })
+    .end();
 });
 app.post("/vote", (req, res) => {
   console.log("POST /vote");
   //check user
-  
+  var body = req.body;
+  if (!body || !body.uuid || !body.target) {
+    return res.send("ERR, BODY IS MISSING").end();
+  }
+  var uuid = body.uuid;
+  var target = body.target;
+  if (!db.user_votes[req.body.uuid] || db.items[req.body.target] == undefined) {
+    db.user_votes[req.body.uuid] = db.user_votes[req.body.uuid] || {};
+    db.items[req.body.target] =
+      db.items[req.body.target] == undefined ? 0 : db.items[req.body.target];
+    save();
+  }
+  if (db.user_votes[uuid][target]) {
+    return res.send("ERR, VOTED").end();
+  } else {
+    db.user_votes[uuid][target] = true;
+    db.items[req.body.target]++;
+    save();
+    return res.send("OK").end();
+  }
 });
 
 function save() {
-  fs.writeFileSync("./db.json", JSON.stringify(db), "utf8");
+  try {
+    fs.writeFileSync("./db.json", JSON.stringify(db), "utf8");
+  } catch (e) {}
 }
 
 function reload() {
-  var d = JSON.parse(fs.readFileSync("./db.json", "utf8"));
-  db = d;
+  try {
+    if (!fs.existsSync("./db.json")) {
+      save();
+    }
+    var d = JSON.parse(fs.readFileSync("./db.json", "utf8"));
+    db = d;
+  } catch (e) {}
 }
 
 reload();
