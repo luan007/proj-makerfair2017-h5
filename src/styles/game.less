@@ -26,17 +26,16 @@
 ._gpin(@x, @y, @h) {
     width: @pins;
     height: @pins;
-    left: 15rem - @x;
-    top: @y - 0.4rem; // background: white;
+    
+    transform:translate(15rem - @x, @y - 0.4rem); // background: white;
     // border-radius: 999em;
     position: absolute;
     transition: 0.5s all ease;
     &:before {
         display: block;
         position: absolute;
-        left: @pins / 2;
+        transform:translate(@pins / 2, @pins);
         transition: 0.5s all ease;
-        top: @pins;
         content: " ";
         border-left: 1px dashed white;
         height: @h + 0.4rem - @pins / 2;
@@ -44,11 +43,10 @@
     &:after {
         display: block;
         position: absolute;
-        left: -2px;
         transition: 0.5s all ease;
-        top: -2px;
         height: @pins;
         width: @pins;
+        transform:translate(-2px, -2px);
         background: #33aa77;
         opacity: 0;
         border: 2px solid #33aa77;
@@ -105,7 +103,7 @@
                 border-radius: 30000em;
                 display: block;
                 content: " ";
-                transition: all 0.3s ease, background-position-y 2s ease, background-position-x 1s ease;
+                transition: all 0.3s ease, background-position-y 3s ease, background-position-x 2s ease;
                 background: linear-gradient(to right bottom, #fff 0%, #fff 20%, #00DFE9 50%, #007CBF 100%);
                 background-size: 400%;
                 background-position: 0% 0%;

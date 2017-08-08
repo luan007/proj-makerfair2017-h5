@@ -12,9 +12,14 @@ function isActivated(id) {
   return !!user.config.badge[i];
 }
 
+function isNear(id) {
+  return common.wechat.near && data.ble[common.wechat.near.key] == id;
+}
+
 function activate(id) {
   if (data.keys_arr.indexOf(id) >= 0) {
     user.config.badge[data.keys_arr.indexOf(id)] = true;
+    alert("恭喜您，您已解锁该零件！");
   }
 }
 
@@ -33,6 +38,7 @@ function isTargetPresent(targetId) {
 
 common.methods.isTargetPresent = isTargetPresent;
 common.methods.isActivated = isActivated;
+common.methods.isNear = isNear;
 
 common.methods.collectBadge = function(targetId) {
   if (!common.wechat.near) {
@@ -50,7 +56,7 @@ common.methods.collectBadge = function(targetId) {
       if (res.resultStr.indexOf("CODE_128,") == 0) {
         var code = res.resultStr.substring("CODE_128,".length);
         if (isTargetPresent(targetId) && data.code[code] == targetId) {
-          alert(targetId);
+          // alert(targetId);
           activate(targetId);
         }
       }

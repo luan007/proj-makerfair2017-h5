@@ -64,8 +64,8 @@ parseXlsx("keys.xlsx", function(err, data) {
 parseXlsx("forum.xlsx", function(err, data) {
   var all = [];
   for (var i = 1; i < data.length; i++) {
-    var dt1 = new Date((parseInt(data[i][0]) - (25567 + 1)) * 86400 * 1000);
-    var dt2 = new Date((parseInt(data[i][0]) - (25567 + 1)) * 86400 * 1000);
+    var dt1 = new Date((parseInt(data[i][0]) - (25567 + 2)) * 86400 * 1000);
+    var dt2 = new Date((parseInt(data[i][0]) - (25567 + 2)) * 86400 * 1000);
     var h1 = parseInt(data[i][1].split("-")[0].split(":")[0]);
     var m1 = parseInt(data[i][1].split("-")[0].split(":")[1]);
     var h2 = parseInt(data[i][1].split("-")[1].split(":")[0]);

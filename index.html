@@ -976,7 +976,7 @@
                         <div class="swiper-slide">
                             <div class='scrollContainer'>
                                 <div class='map3d'>
-                                    <div v-on:click='showDetail(queryPos(d.key), d)' v-for="d in data.keys" :class='{pin: true, active: isActivated(d.key)}'>
+                                    <div v-on:click='showDetail(queryPos(d.key), d)' v-for="d in data.keys" :class='{pin: true, active: isActivated(d.key), near: isNear(d.key)}'>
                                         <div class='pop'>{{d.key.replace('-', '')}}</div>
                                         <div class='p' style='white-space:pre'>{{d.desc}}</div>
                                     </div>
@@ -1054,7 +1054,7 @@
             <div v-if='ui.detail.src && ui.detail.src.rule' :class='{ collect: true, ed: isActivated(ui.detail.src.key) }' v-on:click="collectBadge(ui.detail.src.key)" style='white-space:nowrap'>
                 <img src="assets/ico2.png"/>
                 <span v-if="isTargetPresent(ui.detail.src.key) && !isActivated(ui.detail.src.key)">完成游戏<br>收集零件</span>
-                <span v-if="!isTargetPresent(ui.detail.src.key) && !isActivated(ui.detail.src.key)">靠近区域<br>开始游戏</span>
+                <span v-if="!isTargetPresent(ui.detail.src.key) && !isActivated(ui.detail.src.key)">靠近区域<br>收集勋章</span>
                 <span v-if="isActivated(ui.detail.src.key)">零件<br>已收集</span>
             </div>
         </div>

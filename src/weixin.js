@@ -78,7 +78,7 @@ $.post(
       function tryOpen() {
         wx.startSearchBeacons({
           complete: function(dt) {
-            common.debug.msg = "Weixin is Up";
+            common.debug.msg = dt.errMsg;
             // log("wx.complete");
             // log(JSON.stringify(dt));
 
@@ -108,7 +108,7 @@ $.post(
       wx.onSearchBeacons({
         complete: function(dt) {
           // log("beacon event..");
-          
+          common.debug.msg = dt;
           var beacons = dt.beacons;
           var q = [];
           for (var i = 0; i < beacons.length; i++) {
