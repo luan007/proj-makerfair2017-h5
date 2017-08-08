@@ -99,7 +99,7 @@ window.queryPos = function(d) {
 function getMyVotes() {
   $.ajax({
     type: "POST",
-    url: "http://localhost:7776/view",
+    url: "http://" + LOCAL + ":7776/view",
     data: JSON.stringify({
       uuid: user.config.uname
     }),
@@ -111,12 +111,12 @@ function getMyVotes() {
   });
 }
 
-function toggleVote(target) {
+function vote(target) {
   // console.log(target);
   if (!target) return;
   $.ajax({
     type: "POST",
-    url: "http://localhost:7776/vote",
+    url: "http://" + LOCAL + ":7776/vote",
     data: JSON.stringify({
       uuid: user.config.uname,
       target: target

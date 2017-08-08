@@ -2,7 +2,7 @@ import * as common from "./common.js";
 import * as dtq from "./data.js";
 var dbg = common.debug;
 // alert('in');
-var LOCAL = "debug.com";
+window.LOCAL = "debug.com";
 
 dbg.msg = "Hello Weixin";
 //var LOCAL = "circuitpot.com"
