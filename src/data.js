@@ -4,7 +4,7 @@ import * as spots from "../raw/spots.json";
 import * as stage from "../raw/stage.json";
 import * as user from "./user.js";
 import * as common from "./common.js";
-
+var LOCAL = "192.168.40.33";
 export var data = {
   keys: keys.keys,
   spots: spots.spots,

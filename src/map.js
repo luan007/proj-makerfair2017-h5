@@ -21,7 +21,7 @@ window.addEventListener("load", () => {
   //     .attr("width", 100)
   //     .attr("height", 100);
 
-  var view = d3.select("#g4");
+  var view = d3.select("g");
 
   function zoomed() {
     var s = d3.event.transform.k;
