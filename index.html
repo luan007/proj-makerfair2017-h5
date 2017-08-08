@@ -964,7 +964,7 @@
                                     </div>
                                 </div>
                                 <h3>已收集了</h3>
-                                <h2><b>{{Object.keys(user.badge).length}}</b> / 10</h2>
+                                <h2><b>{{collectedLength()}}</b> / 10</h2>
                                 <h3>零部件</h3>
                                 <p>
                                     <b>游戏规则</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates reprehenderit
@@ -976,7 +976,7 @@
                         <div class="swiper-slide">
                             <div class='scrollContainer'>
                                 <div class='map3d'>
-                                    <div v-on:click='showDetail(queryPos(d.key), d)' v-for="d in data.keys" class='pin'>
+                                    <div v-on:click='showDetail(queryPos(d.key), d)' v-for="d in data.keys" :class='{pin: true, active: isActivated(d.key)}'>
                                         <div class='pop'>{{d.key.replace('-', '')}}</div>
                                         <div class='p' style='white-space:pre'>{{d.desc}}</div>
                                     </div>
@@ -1051,8 +1051,11 @@
                 <b>游戏规则</b>
                 {{ui.detail.src.rule}}
             </p>
-            <div class='collect' v-on:click="collectBadge">
-                <img src="assets/ico2.png"/><span>完成游戏<br>收集零件</span>
+            <div v-if='ui.detail.src && ui.detail.src.rule' :class='{ collect: true, ed: isActivated(ui.detail.src.key) }' v-on:click="collectBadge(ui.detail.src.key)" style='white-space:nowrap'>
+                <img src="assets/ico2.png"/>
+                <span v-if="isTargetPresent(ui.detail.src.key) && !isActivated(ui.detail.src.key)">完成游戏<br>收集零件</span>
+                <span v-if="!isTargetPresent(ui.detail.src.key) && !isActivated(ui.detail.src.key)">靠近区域<br>开始游戏</span>
+                <span v-if="isActivated(ui.detail.src.key)">零件<br>已收集</span>
             </div>
         </div>
 

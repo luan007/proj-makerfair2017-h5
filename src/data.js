@@ -35,6 +35,8 @@ export var data = {
   }
 };
 
+data.keys_arr = Object.keys(data.keys);
+
 // console.log(Object.keys(data.keys));
 
 for (var f in data) {

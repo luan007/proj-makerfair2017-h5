@@ -1,15 +1,47 @@
 import "./styles/game.less";
 import * as common from "./common.js";
 import { data } from "./data.js";
+import * as user from "./user.js";
 export var config = {
   selection: 0
 };
 
-var STRICT = 1;
-common.methods.collectBadge = function() {
+function isActivated(id) {
+  var i = Object.keys(data.keys).indexOf(id);
+  if (i < 0) return false;
+  return !!user.config.badge[i];
+}
+
+function activate(id) {
+  if (data.keys_arr.indexOf(id) >= 0) {
+    user.config.badge[data.keys_arr.indexOf(id)] = true;
+  }
+}
+
+var STRICT = 0;
+function isTargetPresent(targetId) {
+  if (STRICT) {
+    return common.wechat.near && data.ble[common.wechat.near.key] == targetId;
+  }
+  for (var i in common.wechat.bleSignal) {
+    if (data.ble[common.wechat.bleSignal[i].key] == targetId) {
+      return true;
+    }
+  }
+  return false;
+}
+
+common.methods.isTargetPresent = isTargetPresent;
+common.methods.isActivated = isActivated;
+
+common.methods.collectBadge = function(targetId) {
   if (!common.wechat.near) {
     return; //
   }
+  if (!isTargetPresent(targetId)) {
+    return;
+  }
+  if (isActivated(targetId)) return;
   wx.scanQRCode({
     needResult: 1,
     scanType: ["barCode"],
@@ -17,24 +49,9 @@ common.methods.collectBadge = function() {
     success: function(res) {
       if (res.resultStr.indexOf("CODE_128,") == 0) {
         var code = res.resultStr.substring("CODE_128,".length);
-        //common.wechat.scannedCode = code;
-        //check nearby?
-        // alert(code);
-        if (common.wechat.near) {
-          var k = common.wechat.near.key;
-          if (
-            STRICT == 1 &&
-            data.code[code] == data.ble[common.wechat.near.key]
-          ) {
-            //strict
-          } else if (STRICT == 0) {
-            for (var i = 0; i < common.wechat.bleSignal.length; i++) {
-              var b = common.wechat.bleSignal.key;
-              if (data.code[code] == data.ble[b.key]) {
-                
-              }
-            }
-          }
+        if (isTargetPresent(targetId) && data.code[code] == targetId) {
+          alert(targetId);
+          activate(targetId);
         }
       }
     }
