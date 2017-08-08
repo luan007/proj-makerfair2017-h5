@@ -5,6 +5,7 @@
     right: 0;
     bottom: 0;
     opacity: 0;
+    -webkit-overflow-scrolling: touch;
     top: 0;
     overflow: auto;
     z-index: 999999 + 1;
@@ -38,16 +39,15 @@
     line-height: 2.2rem;
     opacity: 0.8;
     text-indent: 2em;
-
     &.rule {
         text-align: center;
         text-indent: 0em;
-        font-weight: 100;
+        font-weight: 400;
         font-size: 0.9em;
         opacity: 0.8;
         b {
-            border-bottom: 1px solid rgba(255,255,255,0.3);
-            display:block;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            display: block;
             margin: 0.5rem;
         }
     }
@@ -55,22 +55,23 @@
 
 .detail .collect {
     @h: 5rem;
-    font-size: 1.2rem;
-    // padding: 1.5rem 2.5rem;
+    font-size: 1.2rem; // padding: 1.5rem 2.5rem;
     border: 2px solid @color-r;
     margin: 2.5rem;
-    height: @h;
-    line-height: @h * 0.98;
+    height: @h; // line-height: @h * 0.98;
+    vertical-align: center;
     font-weight: 800;
-    text-align:center;
+    text-align: center;
     img {
         float: left;
         height: @h;
-        display: inline-block;
-        // margin-right: 1rem;
+        display: inline-block; // margin-right: 1rem;
         background: @color-r;
     }
-
+    span {
+        margin-top: 0.7rem;
+        display: inline-block;
+    }
     &.ed {
         background: @color-r;
         opacity: 0.5;
@@ -78,7 +79,7 @@
 }
 
 .detail .bg {
-    min-height: 50%;
+    min-height: 80%;
     position: relative;
     background-size: cover;
     width: 100%;

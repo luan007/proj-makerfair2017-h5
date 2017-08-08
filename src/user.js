@@ -7,7 +7,12 @@ function uuidv4() {
 
 export var config = {
     uname: Cookies.get('user') || uuidv4(),
-    badges: []
+    badge: {
+      0: true,
+      1: true,
+      2: true,
+      8: true
+    }
 };
 
 console.log(config);

@@ -4,6 +4,17 @@ export var config = {
   selection: 0
 };
 
+common.methods.collectBadge = function() {
+  wx.scanQRCode({
+    needResult: 1,
+    scanType: [ 'barCode' ],
+    desc: "scanQRCode desc",
+    success: function(res) {
+      alert(JSON.stringify(res));
+    }
+  });
+};
+
 var swiper;
 window.addEventListener("load", function() {
   swiper = new Swiper(".game .swiper-container", {
@@ -24,6 +35,6 @@ $(document).ready(function() {
   });
 });
 
-common.events.on('rebind', function(ui) {
-  config = ui.game
+common.events.on("rebind", function(ui) {
+  config = ui.game;
 });

@@ -1,4 +1,5 @@
 import "./styles/common.less";
+import "./weixin.js";
 import * as common from "./common.js";
 import * as footer from "./footer.js";
 import * as schedule from "./schedule.js";

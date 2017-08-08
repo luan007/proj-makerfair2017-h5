@@ -31,7 +31,7 @@ data.day_stage = days(data.stage);
 data.day_forum = days(data.forum);
 
 function getTimeStr(d) {
-  return d.getHours() + ":" + d.getMinutes();
+  return ('0' + d.getHours()).slice(-2) + ":" + ('0' + d.getMinutes()).slice(-2);
 }
 
 function getDateStr(d) {

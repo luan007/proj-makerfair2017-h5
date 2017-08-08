@@ -9,6 +9,7 @@
     <script src='node_modules/jquery/dist/jquery.min.js'></script>
     <script src='node_modules/vue/dist/vue.min.js'></script>
     <script src='vendor/js.cookie.js'></script>
+    <script src='vendor/wx.js'></script>
     <script src='vendor/swiper.min.js'></script>
 
 </head>
@@ -946,24 +947,24 @@
                             <div class='scrollContainer'>
                                 <div id='robot'>
                                     <div class='outline'>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
+                                        <div :class='{active: user.badge[0]}'></div>
+                                        <div :class='{active: user.badge[1]}'></div>
+                                        <div :class='{active: user.badge[2]}'></div>
+                                        <div :class='{active: user.badge[3]}'></div>
+                                        <div :class='{active: user.badge[4]}'></div>
+                                        <div :class='{active: user.badge[5]}'></div>
+                                        <div :class='{active: user.badge[6]}'></div>
+                                        <div :class='{active: user.badge[7]}'></div>
                                         <!-- 9 -->
-                                        <div></div>
-                                        <div></div>
+                                        <div :class='{active: user.badge[8]}'></div>
+                                        <div :class='{active: user.badge[8]}'></div>
                                         <!-- 10 -->
-                                        <div></div>
-                                        <div></div>
+                                        <div :class='{active: user.badge[9]}'></div>
+                                        <div :class='{active: user.badge[9]}'></div>
                                     </div>
                                 </div>
                                 <h3>已收集了</h3>
-                                <h2><b>2</b> / 10</h2>
+                                <h2><b>{{Object.keys(user.badge).length}}</b> / 10</h2>
                                 <h3>零部件</h3>
                                 <p>
                                     <b>游戏规则</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates reprehenderit
@@ -1050,12 +1051,11 @@
                 <b>游戏规则</b>
                 {{ui.detail.src.rule}}
             </p>
-            <div class='collect'>
-                <img src="assets/ico2.png"/><span>完成任务 收集零件</span>
+            <div class='collect' v-on:click="collectBadge">
+                <img src="assets/ico2.png"/><span>完成游戏<br>收集零件</span>
             </div>
         </div>
-
-
+        
         <div class='debug' style='pointer-events: none'>
             <!-- <canvas class='full'></canvas> -->
         </div>
