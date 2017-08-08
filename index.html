@@ -1034,38 +1034,39 @@
 
         <div :class='{ detail: true, show: !!ui.detail.data }'>
             <div style='background-image:url(assets/dummy.jpg)' class='bg'>
-                <div class='like'>
+                <div v-on:click="e=>vote(ui.detail.data.key)" :class='{like : true, ed: voted(ui.detail.data.key)}'>
                     <div></div>
-                    <div>193</div>
+                    <div>{{getVotes(ui.detail.data.key)
+                        < 0 ? "..." : getVotes(ui.detail.data.key)}}</div>
+                    </div>
+                    <div class='bottom'>
+                        <div class='title'>{{ui.detail.data.name}}</div>
+                        <div class='position'>{{ui.detail.data.key}}</div>
+                    </div>
                 </div>
-                <div class='bottom'>
-                    <div class='title'>{{ui.detail.data.name}}</div>
-                    <div class='position'>{{ui.detail.data.key}}</div>
+                <p>
+                    {{ui.detail.data.intro}}
+                </p>
+
+                <p v-if='ui.detail.src && ui.detail.src.rule' class='rule'>
+                    <b>游戏规则</b> {{ui.detail.src.rule}}
+                </p>
+                <div v-if='ui.detail.src && ui.detail.src.rule' :class='{ collect: true, ed: isActivated(ui.detail.src.key) }' v-on:click="collectBadge(ui.detail.src.key)"
+                    style='white-space:nowrap'>
+                    <img src="assets/ico2.png" />
+                    <span v-if="isTargetPresent(ui.detail.src.key) && !isActivated(ui.detail.src.key)">完成游戏<br>收集零件</span>
+                    <span v-if="!isTargetPresent(ui.detail.src.key) && !isActivated(ui.detail.src.key)">靠近区域<br>收集勋章</span>
+                    <span v-if="isActivated(ui.detail.src.key)">零件<br>已收集</span>
                 </div>
             </div>
-            <p>
-                {{ui.detail.data.intro}}
-            </p>
-            
-            <p v-if='ui.detail.src && ui.detail.src.rule' class='rule'>
-                <b>游戏规则</b>
-                {{ui.detail.src.rule}}
-            </p>
-            <div v-if='ui.detail.src && ui.detail.src.rule' :class='{ collect: true, ed: isActivated(ui.detail.src.key) }' v-on:click="collectBadge(ui.detail.src.key)" style='white-space:nowrap'>
-                <img src="assets/ico2.png"/>
-                <span v-if="isTargetPresent(ui.detail.src.key) && !isActivated(ui.detail.src.key)">完成游戏<br>收集零件</span>
-                <span v-if="!isTargetPresent(ui.detail.src.key) && !isActivated(ui.detail.src.key)">靠近区域<br>收集勋章</span>
-                <span v-if="isActivated(ui.detail.src.key)">零件<br>已收集</span>
+
+            <div class='debug' style='pointer-events: none'>
+                <!-- <canvas class='full'></canvas> -->
+                <p class='logger'>{{dmesg.msg}}</p>
             </div>
-        </div>
 
-        <div class='debug' style='pointer-events: none'>
-            <!-- <canvas class='full'></canvas> -->
-            <p class='logger'>{{dmesg.msg}}</p>
         </div>
-
-    </div>
-    <script src='dist/main.js'></script>
+        <script src='dist/main.js'></script>
 
 </body>
 

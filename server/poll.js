@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/view", (req, res) => {
-  console.log("GET /view");
+  console.log("POST /view");
   var body = req.body;
   if (!body || !body.uuid) {
     return res.status(500).end();
@@ -40,7 +40,7 @@ app.post("/vote", (req, res) => {
   //check user
   var body = req.body;
   if (!body || !body.uuid || !body.target) {
-    return res.send("ERR, BODY IS MISSING").end();
+    return res.status(500).end();
   }
   var uuid = body.uuid;
   var target = body.target;
@@ -51,13 +51,22 @@ app.post("/vote", (req, res) => {
     save();
   }
   if (db.user_votes[uuid][target]) {
-    return res.send("ERR, VOTED").end();
+    db.user_votes[uuid][target] = false;
+    db.items[req.body.target]--;
+    save();
   } else {
     db.user_votes[uuid][target] = true;
     db.items[req.body.target]++;
     save();
-    return res.send("OK").end();
   }
+
+  return res
+    .status(200)
+    .json({
+      my: db.user_votes[req.body.uuid],
+      all: db.items
+    })
+    .end();
 });
 
 function save() {
@@ -77,3 +86,5 @@ function reload() {
 }
 
 reload();
+
+app.listen(7776);

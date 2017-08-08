@@ -2,6 +2,8 @@ import * as forum from "../raw/forum.json";
 import * as keys from "../raw/keys.json";
 import * as spots from "../raw/spots.json";
 import * as stage from "../raw/stage.json";
+import * as user from "./user.js";
+import * as common from "./common.js";
 
 export var data = {
   keys: keys.keys,
@@ -20,7 +22,7 @@ export var data = {
     "10102:59404": "D-13",
     "10102:59408": "D-11",
     "10102:59401": "D-12"
-  }, 
+  },
   code: {
     "A-39:AwYNAw0MA": "A-39",
     "A-38:AwEPCwsGD": "A-38",
@@ -32,7 +34,8 @@ export var data = {
     "D-13:BwUKBg0PD": "D-13",
     "D-11:CQAHDAULC": "D-11",
     "D-12:3g4MBwwOA": "D-12"
-  }
+  },
+  votes: {}
 };
 
 data.keys_arr = Object.keys(data.keys);
@@ -92,3 +95,59 @@ window.queryPos = function(d) {
   console.log(d, "not found");
   return undefined;
 };
+
+function getMyVotes() {
+  $.ajax({
+    type: "POST",
+    url: "http://localhost:7776/view",
+    data: JSON.stringify({
+      uuid: user.config.uname
+    }),
+    contentType: "application/json",
+    dataType: "json",
+    success: e => {
+      data.votes = e;
+    }
+  });
+}
+
+function toggleVote(target) {
+  // console.log(target);
+  if (!target) return;
+  $.ajax({
+    type: "POST",
+    url: "http://localhost:7776/vote",
+    data: JSON.stringify({
+      uuid: user.config.uname,
+      target: target
+    }),
+    contentType: "application/json",
+    dataType: "json",
+    success: e => {
+      data.votes = e;
+    }
+  });
+}
+
+
+
+function getVotes(target) {
+  if (data.votes && data.votes.all) {
+    return data.votes.all[target] || 0;
+  } else {
+    return -1;
+  }
+}
+
+function voted(target) {
+  return data.votes && data.votes.my && data.votes.my[target];
+}
+
+common.methods.getVotes = getVotes;
+common.methods.voted = voted;
+
+// window.vote = vote;
+common.methods.vote = vote;
+window.addEventListener("load", function() {
+  getMyVotes();
+});
