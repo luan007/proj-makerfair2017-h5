@@ -1,0 +1,16 @@
+{
+  "name": "mfserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "poll.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.4"
+  }
+}
