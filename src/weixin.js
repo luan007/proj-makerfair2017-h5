@@ -43,9 +43,9 @@ $.post(
 
       // window.data.statusMessage = "微信服务在线..";
       wx.onMenuShareTimeline({
-        title: "Mercedes meStore", // 分享标题
-        link: "http://circuitpot.com/intel/", // 分享链接
-        imgUrl: "http://circuitpot.com/mestore/logo.png?random123", // 分享图标
+        title: "MakerFaire北京 2017", // 分享标题
+        link: "http://circuitpot.com/mf2017/", // 分享链接
+        imgUrl: "http://circuitpot.com/mf2017/assets/logo.png?random123", // 分享图标
         success: function() {
           // 用户确认分享后执行的回调函数
           // jlog("share_timeline", true);
@@ -57,9 +57,9 @@ $.post(
       });
 
       wx.onMenuShareAppMessage({
-        title: "Mercedes meStore", // 分享标题
-        link: "http://circuitpot.com/mestore/", // 分享链接
-        imgUrl: "http://circuitpot.com/mestore/logo.png?random123", // 分享图标
+        title: "MakerFaire北京 2017", // 分享标题
+        link: "http://circuitpot.com/mf2017/", // 分享链接
+        imgUrl: "http://circuitpot.com/mf2017/assets/logo.png?random123", // 分享图标
         desc: "", // 分享描述
         type: "link", // 分享类型,music、video或link，不填默认为link
         success: function() {
