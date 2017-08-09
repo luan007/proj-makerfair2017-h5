@@ -6,17 +6,84 @@ svg {
     bottom: 0;
     height: 100%;
     width: 100%;
-    g {
-        stroke-width: 1px;
-        stroke: white;
-        fill: transparent;
+
+    *[data-name='CLICKS'] {
+        z-index: 99999;
     }
+    g {
+        //     stroke-width: 1px;
+        // stroke: white;
+        // fill: transparent;
+        *[data-name='CLICKS'] {
+            visibility: collapse !important;
+            display: none !important;
+        }
+        *[data-name='LA'] {
+            visibility: collapse !important;
+            display: none !important;
+        }
+        *[data-name='LB'] {
+            visibility: collapse !important;
+            display: none !important;
+        }
+        *[data-name='TA'] {
+            visibility: collapse !important;
+            display: none !important;
+        }
+        *[data-name='TB'] {
+            visibility: collapse !important;
+            display: none !important;
+        }
+    }
+    &.stage1 {
+        g {
+            *[data-name='LA'] {
+                visibility: visible !important;
+                display: block !important;
+            }
+        }
+    }
+
+    &.stage2 {
+        g {
+            *[data-name='CLICKS'] {
+                visibility: visible !important;
+                display: block !important;
+            }
+            *[data-name='LB'] {
+                visibility: visible !important;
+                display: block !important;
+            }
+            *[data-name='TA'] {
+                visibility: visible !important;
+                display: block !important;
+            }
+        }
+    }
+    
+    &.stage3 {
+        g {
+            *[data-name='CLICKS'] {
+                visibility: visible !important;
+                display: block !important;
+            }
+            *[data-name='LB'] {
+                visibility: visible !important;
+                display: block !important;
+            }
+            *[data-name='TB'] {
+                visibility: visible !important;
+                display: block !important;
+            }
+        }
+    }
+    
     // path:nth-of-type(2n),path:nth-of-type(3n),path:nth-of-type(5n),path:nth-of-type(7n) {
     //     visibility: collapse !important;
     //     display: none;
     // }
     .view {
-        fill: red;
+        // fill: red;
     }
     .d1 *,
     .d2 *,

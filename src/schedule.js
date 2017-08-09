@@ -5,17 +5,26 @@ export var config = {
 };
 
 var swiper;
+var initS = null;
 window.addEventListener("load", function() {
   swiper = new Swiper(".schedule .swiper-container", {
     onSlideChangeStart: function() {
-      config.selection = (swiper.realIndex); //double binding
+      config.selection = swiper.realIndex; //double binding
     }
   });
+
+  if (initS != null) {
+    swiper.slideTo(config.selection);
+  }
 });
 
 common.watch["ui.schedule.selection"] = function() {
   //reaction
-  swiper.slideTo(config.selection);
+  if (swiper) {
+    swiper.slideTo(config.selection);
+  } else {
+    initS = config.selection;
+  }
 };
 
 $(document).ready(function() {
@@ -24,6 +33,6 @@ $(document).ready(function() {
   });
 });
 
-common.events.on('rebind', function(ui) {
-  config = ui.schedule
+common.events.on("rebind", function(ui) {
+  config = ui.schedule;
 });

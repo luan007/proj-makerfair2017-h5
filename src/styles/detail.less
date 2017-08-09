@@ -4,19 +4,21 @@
   left: 0;
   right: 0;
   bottom: 0;
-  opacity: 0;
+  height: 100%;
+  width: 100%;
+  display: none;
   -webkit-overflow-scrolling: touch;
   top: 0;
   overflow: auto;
   z-index: 999999 + 1;
   pointer-events: none;
-  transform: translate(-50%, 0%);
-  transition: all 0.5s ease;
+  // transform: translate(-100%, 0%);
+  // transition: all 0.5s ease;
   background: lighten(@color-bg, 3%);
   &.show {
+    display: block;
     pointer-events: all;
-    opacity: 1;
-    transform: translate(0, 0);
+    // transform: translate(0, 0);
   }
 }
 

@@ -19,7 +19,8 @@ body {
 }
 
 #app {
-    overflow-x: hidden;
+    // overflow-x: hidden;
+    overflow: hidden;
 }
 
 // .main.hide {
@@ -29,9 +30,15 @@ body {
 .main {
     pointer-events: all;
     min-height: 100%;
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    bottom:0;
     .tab {
         position: absolute;
         top: 0;
+        z-index: -9999;
         left: 0;
         bottom: 0;
         right: 0;
@@ -42,6 +49,7 @@ body {
         opacity: 0;
     }
     .tab.visible {
+        z-index: 9999;
         transition: transform 0.3s ease, opacity 0.3s ease;
         transform: scale(1);
         pointer-events: all;

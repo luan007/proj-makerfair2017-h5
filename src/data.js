@@ -96,6 +96,15 @@ window.queryPos = function(d) {
   return undefined;
 };
 
+window.queryKey = function(fullKey) {
+  for (var i in data.keys) {
+    if (i == fullKey || fullKey.split(",").indexOf(i) >= 0) {
+      return data.keys[i];
+    }
+  }
+  return undefined;
+};
+
 function getMyVotes() {
   $.ajax({
     type: "POST",

@@ -32,17 +32,13 @@ window.addEventListener("popstate", function(p) {
       var js = JSON.parse(decodeURIComponent(atob(hash.substr(1))));
       flag = true;
       data.ui = js;
-      setTimeout(function(){
+      setTimeout(function() {
         flag = false;
       }, 1); //dirty crap, but works :(
       common.events.emit("rebind", data.ui);
     } catch (e) {}
   }
 });
-
-window.s = function(q) {
-  data.ui.detail.data = q;
-};
 
 common.status.data = data;
 
@@ -63,6 +59,8 @@ common.watch.ui = {
   }
 };
 
+window.data = data;
+
 var app = new Vue({
   el: "#app",
   data: data,
@@ -70,16 +68,6 @@ var app = new Vue({
   methods: common.methods,
   watch: common.watch
 });
-
-window.data = data;
-
-var v = new vfx.vfx(document.querySelector("canvas"));
-function update() {
-  v.update();
-  return requestAnimationFrame(update);
-}
-
-update();
 
 $(window).ready(function() {
   var hash = window.location.hash;
@@ -92,4 +80,13 @@ $(window).ready(function() {
   } else {
     pushState();
   }
+
+  var v = new vfx.vfx(document.querySelector("canvas"));
+  function update() {
+    v.update();
+    map.update();
+    return requestAnimationFrame(update);
+  }
+
+  update();
 });

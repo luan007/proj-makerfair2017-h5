@@ -65,17 +65,26 @@ common.methods.collectBadge = function(targetId) {
 };
 
 var swiper;
+var initS = null;
 window.addEventListener("load", function() {
   swiper = new Swiper(".game .swiper-container", {
     onSlideChangeStart: function() {
       config.selection = swiper.realIndex; //double binding
     }
   });
+
+  if (initS != null) {
+    swiper.slideTo(config.selection);
+  }
 });
 
 common.watch["ui.game.selection"] = function() {
   //reaction
-  swiper.slideTo(config.selection);
+  if (swiper) {
+    swiper.slideTo(config.selection);
+  } else {
+    initS = config.selection;
+  }
 };
 
 $(document).ready(function() {
