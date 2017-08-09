@@ -7,6 +7,12 @@
     <!-- <meta name="x5-fullscreen" content="true"> -->
     <!-- <meta name="full-screen" content="yes"> -->
 
+
+    <script src='node_modules/jquery/dist/jquery.min.js'></script>
+    <script src='node_modules/vue/dist/vue.min.js'></script>
+    <script src='vendor/js.cookie.js'></script>
+    <script src='vendor/wx.js'></script>
+    <script src='vendor/swiper.min.js'></script>
 </head>
 
 <body>
@@ -37,7 +43,7 @@
                                         <div>&nbsp;&nbsp;&nbsp;{{x.title}}</div>
                                         <div class='speakers'>
                                             <div class='speaker'>
-                                                <div class='avatar'></div>
+                                                <div class='avatar' v-bind:style="{ 'background-image': 'url(/assets/speakers/' + (x.id + 1) + '.jpg)' }"></div>
                                                 <div class='vcenter'>
                                                     <div class='name'>{{x.name}}</div>
                                                     <div class='intro'>{{x.job}}</div>
@@ -165,7 +171,7 @@
         </div>
 
         <div :class='{ detail: true, show: !!ui.detail.data }'>
-            <div style='background-image:url(assets/dummy.jpg)' class='bg'>
+            <div v-bind:style="{ 'background-image': 'url(/assets/bg/' + (ui.detail.data ? ui.detail.data.key.split(',')[0] : '') + '.jpg)' }" class='bg'>
                 <div v-on:click="function(a) {vote(ui.detail.data.key)}" :class='{like : true, ed: voted(ui.detail.data.key)}'>
                     <div></div>
                     <div>{{getVotes(ui.detail.data.key)
@@ -199,12 +205,6 @@
 
         </div>
     </div>
-
-    <script src='node_modules/jquery/dist/jquery.min.js'></script>
-    <script src='vendor/vue.js'></script>
-    <script src='vendor/js.cookie.js'></script>
-    <script src='vendor/wx.js'></script>
-    <script src='vendor/swiper.min.js'></script>
     <script src='dist/main.js'></script>
 </body>
 
