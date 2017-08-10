@@ -8,7 +8,7 @@ dbg.msg = "Hello Weixin";
 //var LOCAL = "circuitpot.com"
 
 $.post(
-  "http://"+LOCAL+":13000/config",
+  "http://" + LOCAL + ":13000/config",
   {
     url: window.location.href
   },
@@ -81,7 +81,6 @@ $.post(
             common.debug.msg = dt.errMsg;
             // log("wx.complete");
             // log(JSON.stringify(dt));
-
             if (dt.errMsg && dt.errMsg.indexOf("power off") >= 0) {
               // $("#alertbt").css("opacity", "1");
               alert("请开启蓝牙 以使用页面功能 | Please turn-on Bluetooth");
@@ -116,18 +115,18 @@ $.post(
               continue;
             }
             var mr = beacons[i].major + ":" + beacons[i].minor;
-            if(!dtq.data.ble[mr]) continue;
+            if (!dtq.data.ble[mr]) continue;
             q.push({
               key: mr,
               rssi: parseInt(beacons[i].rssi),
               proximity: beacons[i].proximity
             });
           }
-          q.sort(function(a,b) {
+          q.sort(function(a, b) {
             return -a.rssi + b.rssi;
           });
           var kv = {};
-          for(var i = 0; i < q.length; i++) {
+          for (var i = 0; i < q.length; i++) {
             kv[q[i].key] = q[i];
           }
           common.wechat.ble = kv;
