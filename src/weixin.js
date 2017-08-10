@@ -58,7 +58,7 @@ $.post(
         title: "MakerFaire北京 2017", // 分享标题
         link: "http://circuitpot.com/mf2017/", // 分享链接
         imgUrl: "http://circuitpot.com/mf2017/assets/logo.png?random123", // 分享图标
-        desc: "", // 分享描述
+        desc: "一场创客的派对盛宴，一个展示创意、创新与创造的舞台，一个宣扬创客（Maker）文化的庆典，也是一个适合一家人参加的周末嘉年华。", // 分享描述
         type: "link", // 分享类型,music、video或link，不填默认为link
         success: function() {
           // 用户确认分享后执行的回调函数
