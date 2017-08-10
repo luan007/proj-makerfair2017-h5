@@ -4,8 +4,6 @@ var dbg = common.debug;
 // alert('in');
 // window.LOCAL = "debug.com";
 window.LOCAL = "circuitpot.com";
-
-
 dbg.msg = "Hello Weixin";
 //var LOCAL = "circuitpot.com"
 
