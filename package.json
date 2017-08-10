@@ -36,6 +36,7 @@
   "dependencies": {
     "color": "^2.0.0",
     "eventhandler": "^2.1.0",
+    "panzoom": "^2.6.0",
     "proxy-dns": "^1.1.0"
   }
 }

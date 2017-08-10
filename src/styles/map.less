@@ -6,7 +6,6 @@ svg {
     bottom: 0;
     height: 100%;
     width: 100%;
-
     *[data-name='CLICKS'] {
         z-index: 99999;
     }
@@ -43,13 +42,8 @@ svg {
             }
         }
     }
-
     &.stage2 {
         g {
-            *[data-name='CLICKS'] {
-                visibility: visible !important;
-                display: block !important;
-            }
             *[data-name='LB'] {
                 visibility: visible !important;
                 display: block !important;
@@ -60,7 +54,6 @@ svg {
             }
         }
     }
-    
     &.stage3 {
         g {
             *[data-name='CLICKS'] {
@@ -76,9 +69,7 @@ svg {
                 display: block !important;
             }
         }
-    }
-    
-    // path:nth-of-type(2n),path:nth-of-type(3n),path:nth-of-type(5n),path:nth-of-type(7n) {
+    } // path:nth-of-type(2n),path:nth-of-type(3n),path:nth-of-type(5n),path:nth-of-type(7n) {
     //     visibility: collapse !important;
     //     display: none;
     // }

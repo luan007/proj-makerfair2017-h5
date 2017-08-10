@@ -34,7 +34,7 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <!--论坛-->
-                            <div class='scrollContainer'>
+                            <div class='scrollContainer' v-if='ui.footer.selection == 1'>
                                 <template v-for='d, j in data.day_forum'>
                                     <div class='date'><span>{{j}}</span></div>
                                     <div v-for='x, y in d' class='sch'>
@@ -171,7 +171,8 @@
         </div>
 
         <div :class='{ detail: true, show: !!ui.detail.data }'>
-            <div v-bind:style="{ 'background-image': 'url(assets/bg/' + (ui.detail.data ? ui.detail.data.key.split(',')[0] : '') + '.jpg)' }" class='bg'>
+            <div v-bind:style="{ 'background-image': 'url(assets/bg/' + (ui.detail.data ? ui.detail.data.key.split(',')[0] : '') + '.jpg)' }"
+                class='bg'>
                 <div v-on:click="function(a) {vote(ui.detail.data.key)}" :class='{like : true, ed: voted(ui.detail.data.key)}'>
                     <div></div>
                     <div>{{getVotes(ui.detail.data.key)
@@ -205,6 +206,8 @@
 
         </div>
     </div>
+
+
     <script src='dist/main.js'></script>
 </body>
 
