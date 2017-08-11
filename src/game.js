@@ -53,12 +53,14 @@ common.methods.collectBadge = function(targetId) {
     scanType: ["barCode"],
     desc: "scanQRCode desc",
     success: function(res) {
+      alert("扫描结果:" + res.resultStr);
       if (res.resultStr.indexOf("CODE_128,") == 0) {
         var code = res.resultStr.substring("CODE_128,".length);
         if (data.code[code] == targetId) {
           // alert(targetId);
           activate(targetId);
         }
+
       } else {
         for (var i in data.code) {
           if (res.resultStr.indexOf(i) >= 0) {
