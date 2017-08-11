@@ -47,6 +47,7 @@ common.methods.collectBadge = function(targetId) {
   // if (!isTargetPresent(targetId)) {
   //   return;
   // }
+  
   if (isActivated(targetId)) return;
   wx.scanQRCode({
     needResult: 1,
