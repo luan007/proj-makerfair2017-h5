@@ -59,6 +59,12 @@ common.methods.collectBadge = function(targetId) {
           // alert(targetId);
           activate(targetId);
         }
+      } else {
+        for (var i in data.code) {
+          if (res.resultStr.indexOf(i) >= 0) {
+            return activate(targetId);
+          }
+        }
       }
     }
   });
