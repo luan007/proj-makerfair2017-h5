@@ -41,12 +41,12 @@ common.methods.isActivated = isActivated;
 common.methods.isNear = isNear;
 
 common.methods.collectBadge = function(targetId) {
-  if (!common.wechat.near) {
-    return; //
-  }
-  if (!isTargetPresent(targetId)) {
-    return;
-  }
+  // if (!common.wechat.near) {
+  //   return; //
+  // }
+  // if (!isTargetPresent(targetId)) {
+  //   return;
+  // }
   if (isActivated(targetId)) return;
   wx.scanQRCode({
     needResult: 1,
@@ -55,7 +55,7 @@ common.methods.collectBadge = function(targetId) {
     success: function(res) {
       if (res.resultStr.indexOf("CODE_128,") == 0) {
         var code = res.resultStr.substring("CODE_128,".length);
-        if (isTargetPresent(targetId) && data.code[code] == targetId) {
+        if (data.code[code] == targetId) {
           // alert(targetId);
           activate(targetId);
         }
