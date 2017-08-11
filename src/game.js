@@ -40,6 +40,14 @@ common.methods.isTargetPresent = isTargetPresent;
 common.methods.isActivated = isActivated;
 common.methods.isNear = isNear;
 
+
+common.methods.enterBadge = function(targetId) { 
+  var j = prompt("请输入激活码")
+  if(data.code2[j] == targetId) {
+    activate(targetId);
+  }
+}
+
 common.methods.collectBadge = function(targetId) {
   // if (!common.wechat.near) {
   //   return; //
@@ -60,7 +68,6 @@ common.methods.collectBadge = function(targetId) {
           // alert(targetId);
           activate(targetId);
         }
-
       } else {
         for (var i in data.code) {
           if (res.resultStr.indexOf(i) >= 0) {

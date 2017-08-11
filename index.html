@@ -196,7 +196,9 @@
                     <span v-if="isTargetPresent(ui.detail.src.key) && !isActivated(ui.detail.src.key)">完成游戏<br>收集零件</span>
                     <span v-if="!isTargetPresent(ui.detail.src.key) && !isActivated(ui.detail.src.key)">靠近区域<br>收集勋章</span>
                     <span v-if="isActivated(ui.detail.src.key)">零件<br>已收集</span>
+
                 </div>
+                <div v-on:click="enterBadge(ui.detail.src.key)" v-if="!isActivated(ui.detail.src.key)" class='bar' >或手动输入激活码</div>
             </div>
 
             <div class='debug' style='pointer-events: none; display: none;'>
